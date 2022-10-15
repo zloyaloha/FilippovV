@@ -1,1 +1,1 @@
-# lfirst-course
+# Лабки
