@@ -1,1 +1,1 @@
-# labs-first-co
+# Лабки
