@@ -1,1 +1,1 @@
-# labs-first-course
+# labs-first-co
