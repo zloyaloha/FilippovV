@@ -13,22 +13,22 @@
 int AsciiCode(char c, int counter) {
     int ascii = 0;
     if (c >= 'A' && c <= 'Z') {
-        ascii = (counter + 3 + (int)(c) - 65) % 26 + 65;
+        ascii = (counter + 3 + c - 'A') % 26 + 'A';
     } else {
-        ascii = (counter + 3 + (int)(c) - 97) % 26 + 97;
+        ascii = (counter + 3 + c - 'a') % 26 + 'a';
     }   
     return ascii;
 }
 
 int StateUpdate(char c, int *counter, int state) {
-    if (c == ' ') {
-        *counter = -1;
-        return SPACE;
-    } else if (((int)c >= 1 && (int)c <= 64) || ((int)c >= 91 && (int)c <= 96) || ((int)c >= 123)) {
-        return CONTINUE;
-    } else {
+    if ((c >= 'a' && c <= 'z') || (c <= 'A' && c >= 'Z')) {
         (*counter)++;
         return IN_DIGIT;
+    } else {
+        if (c == ' ') {
+            *counter = -1;
+        }
+        return CONTINUE;
     }
 }
 
