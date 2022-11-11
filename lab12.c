@@ -46,6 +46,7 @@ int StatusUpdate(char ch, char *sign){
         return NUM;
     } else if (ch == '-') {
         *sign = '-';
+        return CONTINUE;
     } else {
         return CONTINUE;
     }
