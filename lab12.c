@@ -3,6 +3,7 @@
 #define SIGN 0
 #define NUM 1
 #define CONTINUE 2
+#define END 3
 
 int Abs(int n) {
     return n = (n > 0) ? n : -n;
@@ -41,6 +42,9 @@ void ToDouble(char num, char sign) {
 }
 
 int StatusUpdate(char ch, char *sign){
+    if (ch == EOF){
+        return END;
+    }
     if (ch >= '0' && ch <= '9') {
         return NUM;
     } else if (ch == '-') {
@@ -53,7 +57,7 @@ int StatusUpdate(char ch, char *sign){
 
 char ClayNum(char ch, int k, char num, char sign){
     if (sign == '+') {
-       if (k == 0) {
+        if (k == 0) {
         num += ch - '0';
     } else if (k == 1) {
         num *= 10;
@@ -77,21 +81,22 @@ char ClayNum(char ch, int k, char num, char sign){
 }
 
 int main() {
-    char ch, sign = '+', num = ' ' - 32;
+    char ch, sign = '+', num = 0;
     int state = CONTINUE;
     int k = 0;
-    while ((ch = getchar()) != EOF){
-
+    while (1){
+        ch = getchar();
         state = StatusUpdate(ch, &sign);
-
         if (state == NUM) {
             num = ClayNum(ch, k, num, sign);
             ++k;
         } else if (state == CONTINUE) {
             ToDouble(num, sign);
-        num = ' ' - 32;
-        k = 0;
-        sign = '+';
+            num = ' ' - 32;
+            k = 0;
+            sign = '+';
+        } else if (state == END){
+            break;
         }
     }
 }
