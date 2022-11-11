@@ -46,7 +46,7 @@ int StatusUpdate(char ch, char *sign){
         return NUM;
     } else if (ch == '-') {
         *sign = '-';
-        return CONTINUE;
+        return SIGN;
     } else {
         return CONTINUE;
     }
@@ -84,19 +84,17 @@ int main() {
     while (1) {
         ch = getchar();
         state = StatusUpdate(ch, &sign);
-        
         if (state == NUM) {
             num = ClayNum(ch, k, num, sign);
             ++k;
-        } else if (state == CONTINUE && k > 0) {
-            ToDouble(num, sign);
-            num = ' ' - 32;
-            k = 0;
-            sign = '+';
-        } else {
-            continue;
+        } else if (state == CONTINUE) {
+            if (k > 0) {
+                ToDouble(num, sign);
+                num = ' ' - 32;
+                k = 0;
+                sign = '+';
+            }
         }
-
         if (ch == EOF) {
             break;
         }
