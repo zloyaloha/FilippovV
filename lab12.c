@@ -42,9 +42,6 @@ void ToDouble(char num, char sign) {
 }
 
 int StatusUpdate(char ch, char *sign){
-    if (ch == EOF){
-        return END;
-    }
     if (ch >= '0' && ch <= '9') {
         return NUM;
     } else if (ch == '-') {
@@ -95,8 +92,8 @@ int main() {
             num = ' ' - 32;
             k = 0;
             sign = '+';
-        } else if (state == END){
+        }
+        if (ch = EOF) {
             break;
         }
-    }
 }
