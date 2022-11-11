@@ -58,24 +58,24 @@ int StatusUpdate(char ch, char *sign){
 char ClayNum(char ch, int k, char num, char sign){
     if (sign == '+') {
         if (k == 0) {
-        num += ch - '0';
-    } else if (k == 1) {
-        num *= 10;
-        num += ch - '0';
-    } else if (k == 2) {
-        num *= 10;
-        num += ch - '0';
-    }
+            num += ch - '0';
+        } else if (k == 1) {
+            num *= 10;
+            num += ch - '0';
+        } else if (k == 2) {
+            num *= 10;
+            num += ch - '0';
+        }      
     } else {
-    if (k == 0) {
-        num -= ch - '0';
-    } else if (k == 1) {
-        num *= 10;
-        num -= ch - '0';
-    } else if (k == 2) {
-        num *= 10;
-        num -= ch - '0';
-    }
+        if (k == 0) {
+            num -= ch - '0';
+        } else if (k == 1) {
+            num *= 10;
+            num -= ch - '0';
+        } else if (k == 2) {
+            num *= 10;
+            num -= ch - '0';
+        }
     }
     return num;
 }
