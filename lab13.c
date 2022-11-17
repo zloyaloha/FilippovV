@@ -30,20 +30,20 @@ void SetOutput(unsigned long long set) {
 
 int main(void) {
     setlocale(LC_ALL, "");
-    unsigned long long vowels_type1 = (1llu << (L'а' - L'а') | 1llu << (L'о' - L'а') | 1llu << (L'у' - L'а') | 1llu << (L'э' - L'а') | 1llu << (L'ы' - L'а') | 1llu << (L'и' - L'а'));
+    unsigned long long vowelsType1 = (1llu << (L'а' - L'а') | 1llu << (L'о' - L'а') | 1llu << (L'у' - L'а') | 1llu << (L'э' - L'а') | 1llu << (L'ы' - L'а') | 1llu << (L'и' - L'а'));
     unsigned long long vowels = (1llu << (L'а' - L'а') | 1llu << (L'о' - L'а') | 1llu << (L'у' - L'а') | 1llu << (L'э' - L'а') | 1llu << (L'ы' - L'а') | 1llu << (L'и' - L'а') | 1llu << (L'е' - L'а') | 1llu << (L'ё' - L'а') | 1llu << (L'ю' - L'а') | 1llu << (L'я' - L'а'));
-    unsigned long long letters_set = 0;
+    unsigned long long lettersSet = 0;
     wint_t c, ch = 0;
     char flag = 0;
 
     while (1) {
         c = getwchar();
         if ((ch == ' ' || ch == '\n' || ch == ',') && c != WEOF) {
-            letters_set = 0;
+            lettersSet = 0;
         }
-        letters_set = letters_set | CharToSet(c);
+        lettersSet = lettersSet | CharToSet(c);
         if ((c == ' ' || c == '\n' || c == ',') && (ch >= L'а' && ch <= L'ё')) {
-            if (SetDifference(vowels & letters_set, vowels_type1) == 0) {
+            if (SetDifference(vowels & lettersSet, vowelsType1) == 0) {
                 flag = 1;
             }
         } else if (c == WEOF) {
@@ -51,7 +51,7 @@ int main(void) {
         }
         ch = c;
     }
-    if ((SetDifference(letters_set & vowels, vowels_type1) == 0 || flag == 1) && letters_set != 0) {
+    if ((SetDifference(lettersSet & vowels, vowelsType1) == 0 || flag == 1) && lettersSet != 0) {
         wprintf(L"Yes\n");
     } else {
         wprintf(L"No\n");
