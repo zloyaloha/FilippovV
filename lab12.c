@@ -15,7 +15,7 @@ void RecursionOutput(char num) {
         putchar('0' + Abs(num) % 2);
     }
 }
-
+ 
 char Pow(char num, char power) {
     char res = 1;
     for (int i = 1; i <= power; i++) {
