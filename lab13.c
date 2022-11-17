@@ -9,7 +9,6 @@ unsigned long long SetDifference(unsigned long long set1, unsigned long long set
     return set1 & ~set2;
 }
 
-
 unsigned long long CharToSet(wint_t c) {
     c = towlower(c);
     if (c < L'а' || c > L'ё'){
