@@ -66,13 +66,8 @@ int main() {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             a[i][j] = b[(i + (GROUP % n)) % n][j];
-        }
-    }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
             printf("%d ", a[i][j]);
         }
         putchar('\n');
     }
-    putchar('\n');
 }
