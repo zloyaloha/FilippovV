@@ -1,11 +1,11 @@
-
-
 #include <stdio.h>
 
 #define NUM 1
 #define SPACE 2
 #define ENTER 3
 #define END 4
+#define MAXN 8
+
 
 int StateUpdate(char c) {
     if (c == '\n') {
@@ -28,8 +28,8 @@ int ClayNum(char c, int num, int flag) {
 }
 
 int main() {
-    int n = 1, maxn = 100, state = 0, flag = 0, number = 0, inI = 0, inJ = 0;
-    int a[maxn][maxn];
+    int n = 1, state = 0, flag = 0, number = 0, inI = 0, inJ = 0;
+    int a[MAXN][MAXN];
     char c;
     while (1) {
         c = getchar();
