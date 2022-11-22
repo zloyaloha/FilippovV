@@ -4,7 +4,7 @@
 #define SPACE 2
 #define ENTER 3
 #define END 4
-#define MAXN 8
+#define MAX_N 8
 #define GROUP 110
 
 
@@ -30,8 +30,8 @@ int ClayNum(char c, int num, int flag) {
 
 int main() {
     int n = 1, state = 0, flag = 0, number = 0, inI = 0, inJ = 0;
-    int a[MAXN][MAXN];
-    int b[MAXN][MAXN];
+    int a[MAX_N][MAX_N];
+    int b[MAX_N][MAX_N];
     char c;
     while (1) {
         c = getchar();
@@ -63,21 +63,9 @@ int main() {
         }
     }
     
-    
-    for (int k = 0;  k < GROUP; k++) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i != n - 1) {
-                    a[i + 1][j] = b[i][j];
-                } else {
-                    a[0][j] = b[n-1][j];
-                }
-            }
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                b[i][j] = a[i][j];
-            }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = b[(i + (GROUP % n)) % n][j];
         }
     }
     for (int i = 0; i < n; i++) {
