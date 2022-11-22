@@ -13,10 +13,12 @@ long double MachineEpsilon() {
 int main(void) {
     long double e = MachineEpsilon();
     int n;
-    double b = 0.5;
+    long double b = 0.5, step;
     printf("Print the accuracy ");
     scanf("%d", n);
-    
+    step = b / n;
+    printf("%LF", step);
+
 
 
 }
