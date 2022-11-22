@@ -15,10 +15,7 @@ int main(void) {
     int n;
     long double b = 0.5, step;
     printf("Print the accuracy ");
-    scanf("%d", n);
+    scanf("%Lf", n);
     step = b / n;
     printf("%LF", step);
-
-
-
 }
