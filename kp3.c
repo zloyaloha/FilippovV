@@ -51,10 +51,10 @@ int main(void) {
                 break;
             }
         }
-        printf("| %.3Lf\t| %.15Lf\t| %.15Lf\t| %d\t|\n", i, res, atanl(i), counter);
+        printf("| %.3Lf\t| %.20Lf| %.20Lf| %d\t|\n", i, res, atanl(i), counter);
         res = 0;
         counter = 0;
 	}
-	printf(" ---------------------------------------------------------------\n");
+	printf(" ----------------------------------------------------------------\n");
 	return 0;
 }
