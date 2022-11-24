@@ -25,7 +25,7 @@ long double MachineEpsilon() {
 
 int main(void) {
     long double e = MachineEpsilon();
-    long double b = 0.5, step, iter, res, temp, k = 0.1, num;
+    long double b = 0.5, step, iter, res, temp, num;
     int counter = 0;
     printf("Print the iterations: ");
     scanf("%Lf", &iter);
