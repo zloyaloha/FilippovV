@@ -25,10 +25,10 @@ long double MachineEpsilon() {
 
 int main(void) {
     long double e = MachineEpsilon();
-    long double b = 0.5, step, iter, res, temp, num;
-    int counter = 0;
+    long double b = 0.5, step, res, temp, num;
+    int counter = 0, iter;
     printf("Print the iterations: ");
-    scanf("%Lf", &iter);
+    scanf("%d", &iter);
     putchar('\n');
     step = b / iter;
     printf("Machine epsilon for long double = %.8Le\n", e);
