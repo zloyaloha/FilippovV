@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{ amssymb }
+\usepackage{ textcomp }
+\usepackage{ esint }
+\usepackage{geometry}
+\usepackage{ upgreek }
+\geometry{papersize={22.3 cm,25.4 cm}}
+\geometry{left=2.5cm}
+\geometry{right=2.5cm}
+\geometry{top=1.8cm}
+\geometry{bottom=1.8cm}
+\setcounter{page}{288}
+\begin{document}
+
+\noindent \textbf{ТЕОРЕМА 4.} \textit{Непрерывное взаимно-однозначное отображение компакта является гомеоморфизмом.}
+
+\noindent \textsf{Д о к а з а т е л ь с т в о.} Пусть X - компакт, $X \subset \textbf{R}^n$, и $f \-- $ его непрерывное взаимно-однозначное отображение в пространство $\textbf{R}^m$. Докажем, что обратное ему отображение $f^{-1}$ множества $f(X) \subset \textbf{R}^m$ в пространство $\textbf{R}^n$ также непрерывно.
+    
+Пусть $y^{0}, y^{k} \in f(X)$, тогда 
+\begin{equation*}
+    x^{(0)} = f^{-1}(y^{(0)}) \in X, \qquad x^{(k)}=f^{-1}(y^{(k)}) \in X, \qquad k = 1, 2, ... , \eqno(36.28)
+\end{equation*}
+
+\noindent и пусть
+
+\begin{equation*}
+    \lim_{k\to \infty}y^{(k)} = y^{(0)}. \eqno(36.29)
+\end{equation*}
+
+Покажем, что
+
+\begin{equation*}
+    \lim_{k\to \infty}x^{(k)} = x^{(0)}. \eqno(36.30)
+\end{equation*}
+
+Если бы это было не так, то существовало бы такое $\upvarepsilon > 0$, что для любого натурального $m$ нашлось бы натуральное
+
+\begin{equation*}
+    k_{m} > m, \eqno(36.31)
+\end{equation*}
+
+\noindent для которого выполнялось бы неравенство
+
+\begin{equation*}
+    |x^{(k_m)} - x^{(0)}| \> \geqslant \upvarepsilon, \eqno(36.32)
+\end{equation*}
+
+\noindent при этом из (36.31) следовало бы, что
+
+\begin{equation*}
+    \lim_{m\to \infty}k_m = \infty. 
+\end{equation*}
+
+В силу компактности множества X из последовательности $x_{k_m} \in X, m = 1, 2, ... ,$ можно выделить сходящуюся полпоследовательность $x^{(k_{m_j})}, j = 1, 2, ... ,$ предел которой принадлежал бы X:
+
+\begin{equation*}
+    \lim_{j\to \infty}x^{(k_{m_j})} = x \in X. \eqno(36.33)
+\end{equation*}
+
+Из неравенства (36.32) следует, в частности, что $|x^{(k_{m_j})} - x^{(0)}| \geqslant \upvarepsilon, j = 1, 2, ... . $ Переходя к пределу при $j \to \infty$, получим $|x - x^{(0)}| \geqslant \upvarepsilon$. Следовательно, $x \neq x^{(0)}$, а это в силу взаимной однозначности отображения $f$ означает, что 
+
+\begin{equation*}
+    f(x) \neq f(x^{(0)}) = y^{(0)} \eqno(36.34)
+\end{equation*}
+
+Однако последовательность {$y^{k_{m_{j}}}$} является подпоследовательностью последовательности {$y^{k}$}, имеющиней своим пределом точку $y^{(0)}$ и поэтому 
+
+\begin{equation*}
+    \lim_{j\to \infty}y^{(k_{m_j})} = \lim_{k\to \infty}y^{(k)} = y^{(0)}. \eqno(36.35)
+\end{equation*}
+\newpage
+Но в силу непрерывности отображения $f$ в точке $x$, согласно (36.33), имеем
+
+\begin{equation*}
+    \lim_{j\to \infty}y^{(k_{m_j})} = \lim_{j\to \infty}f(x^{(k_{m_j})}) = f(x) \underset{(36.34)}{\neq} y^{(0)},
+\end{equation*}
+
+что противоречит равенству (36.35). Таким образом, справедливо равенство (36.30), т.е.
+
+\begin{equation*}
+    \lim_{k\to \infty}f^{(-1)}(y^{(k)}) = f^{(-1)}(y^{(0)}).
+\end{equation*}
+
+Это и означает непрерывность отображения $f^{-1}$ в любой точке $y^{(0)} \in f(X).\square$
+
+Доказанная теорема является обобщением теоремы о непрерывности функции, обратной к непрерывной строго монотонной на отрезке функции
+
+\subsection*{36.8. Равномерная непрерывность}
+
+В пункте 6.4 т. 1 было введено понятие равномерно непрерывной функции на отрезке. Это определение можно обобщить на случай отображений $f: X \to \textbf{R}^m, X \subset \textbf{R}^n.$ Если отображение $f$ непрерывно на множестве X, то для любого $\upvarepsilon > 0$ и для любой точки $x \in X$ существует такое $\delta > 0$ (тем самым зависящее от $\upvarepsilon$ и $x$), что для всех точек $x^{\prime} \in X$, для которых $|f(x^{\prime}) - f(x)| < \upvarepsilon$.\par
+Как и в случае функций одной переменной, отказ от зависимости числа $\delta$ от точки множества приводит к понятию равномерной непрерывности.
+
+\noindent \textbf{Определение 6.} \textit{Отображение $f: X \to \textbf{R}^m, x \subset \textbf{R}^n$, называется равномерно непрерывным, если для любого $e > 0$ существует такое $\delta > 0$, что для любых двух точек $x \in X$ и $ x^{\prime} \in X$, таких, что $|x^{\prime} - x| < \delta$, выполняется неравенство}
+
+\begin{equation*}
+    |f(x^{\prime}) - f(x)| < \upvarepsilon.
+\end{equation*}
+
+В символической записи это определение выглдяит следующим образом:
+
+\begin{equation*}
+    \forall \upvarepsilon > 0 \; \exists \delta > 0 \; \forall x, x^{\prime} \in X, \; |x^{\prime} - x| < \delta: \; |f(x^{\prime}) - f(x)| < \upvarepsilon \eqno(36.36)
+\end{equation*}
+
+т.е. снова буквальное повторение записи определения равномерной непрерывности функции одной переменной (см. т. 1, п 6.4). \par
+Вспомнив определение диаметра множества (см. определение 33 в п. 35.3), по аналогии со случаем числовых функций одной переменной легко убедиться, что определение равномерной непрерывности отображения можно сформулировать следующим образом.
+
+\end{document}
+
