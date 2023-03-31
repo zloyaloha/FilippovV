@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"
-#define STACK_SIZE 69
+#include "sort.h"
+#define STACK_SIZE 30
 
 int main() {
     node *head = NULL;
