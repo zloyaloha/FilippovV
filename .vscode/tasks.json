@@ -2,9 +2,11 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: gcc сборка активного файла",
+            "label": "Ну давай кожаный мудила, отладь меня",
             "command": "/usr/bin/gcc",
             "args": [
+                "-Wall",
+                "-lm",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",

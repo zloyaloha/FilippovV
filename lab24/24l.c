@@ -1,7 +1,6 @@
 
-#define CAPACITY 2
+#define CAPACITY 128
 #include <string.h>
-#include <malloc.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -26,7 +25,7 @@ typedef struct StackNodesC {
 // реализация вектора чаров 
 void PushBackL(char *arr, char value, int *capacity, int *size){
     if (*size >= *capacity){
-        arr = realloc(arr, sizeof(arr) * 2);
+        arr = realloc(arr, sizeof(char) * 2);
         *capacity *= 2;
     }
     arr[*size] = value; 
@@ -116,7 +115,7 @@ char IsOperator(char c) {
 
 char *PostFix(char *arr, int *size) {
     int capacity = CAPACITY, sizeR = 0, priority, c = 0;
-    char *res = malloc(sizeof(char) * CAPACITY);
+    char *res = (char *)malloc(sizeof(char) * CAPACITY);
     nodeC *head = NULL;
     if (size == 0) {
         printf("Input is empty");
@@ -198,7 +197,6 @@ tnode *MathTree(char *arr, int size) {
             tnode *symbN = MakeTree(symb, NULL, NULL);
             PushN(&stack, symbN);
         }
-
     }
     return PopN(&stack);
 }
