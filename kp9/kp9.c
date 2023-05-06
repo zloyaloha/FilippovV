@@ -10,10 +10,10 @@ typedef struct {
 }line;
 
 typedef struct {
-    long s;
-    long i;
-    long j;
-    long k;
+    int s;
+    int i;
+    int j;
+    int k;
 }quat;
 
 typedef struct Stack{
@@ -68,28 +68,27 @@ void SwapL(line *a, line *b) {
 }
 
 int Partition(quat *q, line *l, int left, int right) {
-    quat medium = q[(left + right) >> 1];
-    quat tmpQ;
-    line tmpL;
+    int medium = SquaredNormOfQuat(q[(left + right) / 2]);
     int i = left, j = right;
-    while (i <= j) {
-        while (SquaredNormOfQuat(q[i]) < SquaredNormOfQuat(medium)) {
+    do {
+        while (SquaredNormOfQuat(q[i]) < medium) {
             i++;
         }
-        while (SquaredNormOfQuat(q[j]) > SquaredNormOfQuat(medium)) {
+        while (SquaredNormOfQuat(q[j]) > medium) {
             j--;
         }
-        if (i >= j) {
-            break;
+        if (i <= j) {
+            SwapL(&l[j], &l[i]);
+            SwapQ(&q[i], &q[j]);
+            i++;
+            j--;
         }
-        SwapL(&l[j], &l[i]);
-        SwapQ(&q[i++], &q[j--]);
-    }
-    return j;
+    } while (i <= j);
+    return i;
 }
 
 void QuickSort(quat *q, line *l, int n) {
-    int left = 0, right = n - 1, medium = n >> 1, tmp[2];
+    int left = 0, right = n - 1, tmp[2];
     nodeS *s = NULL;
     PushL(&s, left, right);
     while (EmptyCheck(s)) {
@@ -97,37 +96,38 @@ void QuickSort(quat *q, line *l, int n) {
         if (tmp[1] <= tmp[0]) {
             continue;
         }
-        int i = Partition(q, l, tmp[0], tmp[1]);
-        if (i - tmp[0] < tmp[1] - i) {
-            PushL(&s, tmp[0], i - 1);
-            PushL(&s, i + 1, tmp[1]);
+        int border = Partition(q, l, tmp[0], tmp[1]);
+        if (border - tmp[0] < tmp[1] - border) {
+            PushL(&s, tmp[0], border - 1);
+            PushL(&s, border, tmp[1]);
         } else {
-            PushL(&s, i + 1, tmp[1]);
-            PushL(&s, tmp[0], i - 1);
+            PushL(&s, border, tmp[1]);
+            PushL(&s, tmp[0], border - 1);
         }
     }
 }
 
 void PrintTable(line *l, quat *q, int n) {
     for (int i = 0; i < n; i++) {
-        printf("%d+%di+%dj+%dk\t%s\n", q[i].s, q[i].i, q[i].j, q[i].k, l[i].value);
+        printf("%d\t%d+%di+%dj+%dk\t%s\n", SquaredNormOfQuat(q[i]), q[i].s, q[i].i, q[i].j, q[i].k, l[i].value);
     }
+    putchar('\n');
 }
 
 int BinarySearch(quat *q, int n, quat aim) {
     int left = 0, right = n, m;
+    int sqnAIM = SquaredNormOfQuat(aim);
     while (left <= right) {
-        int sqnAIM = SquaredNormOfQuat(aim);
-        int sqnM = SquaredNormOfQuat(q[m]);
         m = (right + left) / 2;
+        int sqnM = SquaredNormOfQuat(q[m]);
         if (SquaredNormOfQuat(aim) == SquaredNormOfQuat(q[m])) {
             left = m;
             break;
         }
         if (SquaredNormOfQuat(aim) < SquaredNormOfQuat(q[m])) {
-            right = m + 1;
+            right = m - 1;
         } else {
-            left = m - 1;
+            left = m + 1;
         }
     }
     if (SquaredNormOfQuat(q[left]) == SquaredNormOfQuat(aim)) {
@@ -144,9 +144,9 @@ int main(int argc, char *argv[]) {
     quat q[MAX_TEXT_SIZE];
     quat test;
     test.s = 1;
-    test.i = 2;
-    test.j = 3;
-    test.k = 4;
+    test.i = 7;
+    test.j = 7;
+    test.k = 2;
 
     int n = 0;
     // if (argc != 2) {
@@ -160,11 +160,10 @@ int main(int argc, char *argv[]) {
     while (!feof(f)) {
         fscanf(f, "%d+%di+%dj+%dk;%[^'\n']", &q[n].s, &q[n].i, &q[n].j, &q[n].k, &l[n]);
         n++;
-    }
-    // int bin = BinarySearch(q, n, test);
+    };
     PrintTable(l,q,n);
-    putchar('\n');
     QuickSort(q, l, n);
     PrintTable(l,q,n);
-    // printf("%d+%di+%dj+%dk \t %s", q[bin].s, q[bin].i, q[bin].j, q[bin].k, l[bin].value);
+    int bin = BinarySearch(q, n, test);
+    printf("%d+%di+%dj+%dk \t %s", q[bin].s, q[bin].i, q[bin].j, q[bin].k, l[bin].value);
 }

@@ -42,23 +42,36 @@ void Swap(int *a, int *b) {
 int Partition(int *q, int left, int right) {
     int medium = q[(left + right) / 2];
     int i = left, j = right;
-    while (i < j) {
+    for (int k = 0; k < 9; k++) {
+        printf("%d ", q[k]);
+    }
+    putchar('\n');
+    do {
         while (q[i] < medium) {
             i++;
         }
         while (q[j] > medium) {
             j--;
         }
-        if (i >= j) {
+        if (i <= j) {
+            Swap(&q[i], &q[j]);
+            i++;
+            j--;
+        } else {
             break;
         }
-        Swap(&q[i++], &q[j--]);
+    } while (i <= j);
+
+    for (int k = 0; k < 9; k++) {
+        printf("%d ", q[k]);
     }
-    return j;
+    putchar('\n');
+    printf("%d\n", medium);
+    return i;
 }
 
 void QuickSort(int *q, int n) {
-    int left = 0, right = n - 1, medium = n >> 1, tmp[2];
+    int left = 0, right = n - 1, tmp[2];
     nodeS *s = NULL;
     PushL(&s, left, right);
     while (EmptyCheck(s)) {
@@ -69,18 +82,23 @@ void QuickSort(int *q, int n) {
         int border = Partition(q, tmp[0], tmp[1]);
         if (border - tmp[0] > tmp[1] - border) {
             PushL(&s, tmp[0], border - 1);
-            PushL(&s, border + 1, tmp[1]);
+            PushL(&s, border, tmp[1]);
+            printf("1(%d %d) (%d %d)\n", tmp[0], border - 1, border, tmp[1]);
         } else {
-            PushL(&s, border + 1, tmp[1]);
+            PushL(&s, border, tmp[1]);
             PushL(&s, tmp[0], border - 1);
+            printf("2(%d %d) (%d %d)\n", border, tmp[1], tmp[0], border - 1);
         }
     }
-    for (int i = 0; i < 7; i++) {
-        printf("%d ", q[i]);
-    }
+    // for (int i = 0; i < 13; i++) {
+    //     printf("%d ", q[i]);
+    // }
 }
 
 int main() {
-    int a[7] = {3, 8, 9, 3, 4, 1, 2};
-    QuickSort(a, 7);
+    int a[9] = { 156, 133, 201, 169, 82, 119, 135, 165, 50};
+    QuickSort(a, 9);
+    for (int i = 0; i < 9; i++) {
+        printf("%d ", a[i]);
+    }
 }
